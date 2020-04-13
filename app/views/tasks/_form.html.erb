@@ -1,11 +1,11 @@
 <%= form_with(model: task, local: true) do |f| %>
  <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this message from being saved:</h2>
 
       <ul>
-        <% task.errors.full_tasks.each do |msg| %>
-          <li><%= msg %></li>
+        <% task.errors.full_messages.each do |tsk| %>
+          <li><%= tsk %></li>
         <% end %>
       </ul>
     </div>
