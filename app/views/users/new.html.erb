@@ -13,7 +13,7 @@
         
         <div class="form-group">
             <%= f.label :email, 'Email' %>
-            <%= f.text_field :email, class: 'form-control' %>
+            <%= f.email_field :email, class: 'form-control' %>
         </div>
         
         <div class="form-group">
@@ -29,5 +29,11 @@
         <%= f.submit 'Sign up', class:'btn btn-primary btn-block' %>
         <% end %>
         
-    </div>
+         <%= link_to 'ログインページ', login_path %>
+        </div>
+    
+     
+       
+    
+    
 </div>
