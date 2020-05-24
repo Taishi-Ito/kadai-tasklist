@@ -4,12 +4,11 @@ class TasksController < ApplicationController
     before_action :correct_user, only: [:destroy,:update, :edit, :show]
   
   def index
-    
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
   end
 
   def show
-   @task = Task.find(params[:id])
+  set_task
   end
 
   def new
@@ -29,7 +28,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-      @task = Task.find(params[:id])
+     set_task
   end
 
   def update
@@ -42,7 +41,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+   set_task
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
@@ -51,9 +50,13 @@ class TasksController < ApplicationController
   
   private
 
+  def set_task
+    @task = @task = current_user.tasks.find_by(id: params[:id])
+  end
 
   def correct_user
-    @task = current_user.tasks.find_by(id: params[:id])
+   set_task
+   
     unless @task
       redirect_to root_url
     end
