@@ -1,14 +1,14 @@
 class TasksController < ApplicationController
   
    before_action :require_user_logged_in
-    before_action :correct_user, only: [:destroy,:update, :edit, :show]
+    before_action :correct_user, only: [:destroy, :update, :edit, :show]
   
   def index
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
   end
 
   def show
-  correct_user
+  
   end
 
   def new
@@ -21,14 +21,14 @@ class TasksController < ApplicationController
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to root_url
     else
-      @tasks = current_user.tasks.order(id: :desc).page(params[:page])
+      
       flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render :new
     end
   end
 
   def edit
-     correct_user
+    
   end
 
   def update
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-   correct_user
+   
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
